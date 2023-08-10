@@ -118,10 +118,10 @@ def load_face_parser_model(path="./assets/pretrained_models/79999_iter.pth"):
     if FACE_PARSER is None:
         FACE_PARSER = init_parsing_model(path, device=device)
 
-def load_nsfw_detector_model(path="./assets/pretrained_models/open-nsfw.onnx"):
-    global NSFW_DETECTOR
-    if NSFW_DETECTOR is None:
-        NSFW_DETECTOR = NSFWChecker(model_path=path, providers=PROVIDER)
+#def load_nsfw_detector_model(path="./assets/pretrained_models/open-nsfw.onnx"):
+    #global NSFW_DETECTOR
+    #if NSFW_DETECTOR is None:
+        #NSFW_DETECTOR = NSFWChecker(model_path=path, providers=PROVIDER)
 
 
 load_face_analyser_model()
@@ -194,8 +194,8 @@ def process(
 
     ## ------------------------------ PREPARE INPUTS & LOAD MODELS ------------------------------
 
-    yield "### \n ⌛ Loading NSFW detector model...", *ui_before()
-    load_nsfw_detector_model()
+    #yield "### \n ⌛ Loading NSFW detector model...", *ui_before()
+    #load_nsfw_detector_model()
 
     yield "### \n ⌛ Loading face analyser model...", *ui_before()
     load_face_analyser_model()
@@ -228,14 +228,14 @@ def process(
     def swap_process(image_sequence):
         ## ------------------------------ CONTENT CHECK ------------------------------
 
-        yield "### \n ⌛ Checking contents...", *ui_before()
-        nsfw = NSFW_DETECTOR.is_nsfw(image_sequence)
-        if nsfw:
-            message = "NSFW Content detected !!!"
-            yield f"### \n 🔞 {message}", *ui_before()
-            assert not nsfw, message
-            return False
-        EMPTY_CACHE()
+        #yield "### \n ⌛ Checking contents...", *ui_before()
+        #nsfw = NSFW_DETECTOR.is_nsfw(image_sequence)
+        #if nsfw:
+           # message = "NSFW Content detected !!!"
+            #yield f"### \n 🔞 {message}", *ui_before()
+            #assert not nsfw, message
+           # return False
+        #EMPTY_CACHE()
 
         ## ------------------------------ ANALYSE FACE ------------------------------
 
